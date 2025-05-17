@@ -1,11 +1,10 @@
-import React from 'react'
-import css from './Contact.module.css'
-import { FaUser } from "react-icons/fa6";
-import { FaPhone } from "react-icons/fa6";
-import { deleteContact } from '../../redux/contactsSlice';
+import css from './Contact.module.css';
+import { FaUser } from 'react-icons/fa6';
+import { FaPhone } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsOps';
 
-const Contact = ({name, phone, id}) => {
+const Contact = ({ contact }) => {
   const dispatch = useDispatch();
 
   const contactRemove = (contactId) => {
@@ -13,15 +12,15 @@ const Contact = ({name, phone, id}) => {
   };
 
   return (
-    <div className={css.box}>
+
+<div className={css.box}>
         <ul className={css.list}>
-            <li className={css.item}><FaUser /> {name}</li>
-            <li className={css.item}><FaPhone /> {phone}</li>
+            <li className={css.item}><FaUser /> {contact.name}</li>
+            <li className={css.item}><FaPhone /> {contact.number}</li>
             
         </ul>
-        <button className={css.button} onClick={() => contactRemove(id)}>Delete</button>
+        <button type="button" className={css.button} onClick={() => contactRemove(contact.id)}>Delete</button>
     </div>
-  )
-}
-
-export default Contact
+  );
+};
+export default Contact;
